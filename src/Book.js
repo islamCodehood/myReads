@@ -13,7 +13,7 @@ class Book extends Component {
                         bookId={this.props.bookId}
                         book={this.props.book}
                         currentShelf={this.props.shelf}
-                        />
+                    />
                 </div>
                 <div className="book-title">{this.props.title}</div>
                 <div className="book-authors">{this.props.authors}</div>
