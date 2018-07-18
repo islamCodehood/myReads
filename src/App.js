@@ -1,8 +1,10 @@
 import React from 'react'
 import * as BooksAPI from './BooksAPI'
+import { Route } from 'react-router-dom'
 import './App.css'
 import SearchBooks from './SearchBooks'
 import BookList from './BookList'
+
 
 class BooksApp extends React.Component {
   state = {
@@ -12,8 +14,7 @@ class BooksApp extends React.Component {
      * users can use the browser's back and forward buttons to navigate between
      * pages, as well as provide a good URL they can bookmark and share.
      */
-    books: [],
-    showSearchPage: false
+    books: []
   }
 
   componentDidMount() {
@@ -24,24 +25,28 @@ class BooksApp extends React.Component {
       })
     })
   }
-
-  changeShelf = (value, book) => {
-    book.shelf = value
-    console.log(value, book.shelf)
+//Change the book shelf and move it to the new shelf
+  changeShelf = (book, shelf) => {
+    book.shelf = shelf
+    console.log(shelf, book.shelf)
+    //Change the state by filtering the books array to exclude the changed
+    //book. Then concat this book after changing its shelf value to the books array.
     this.setState((state) => ({
       books: state.books.filter((b) => b.id !== book.id).concat([book])
     }))
-
+    //update books in server
+    BooksAPI.update(book, shelf)
 }
 
   render() {
     return (
       <div className="app">
-        {this.state.showSearchPage ? (
-          <SearchBooks />
-          ) : (
+        <Route exact path="/" render={() => (
           <BookList books={this.state.books} changeShelf={this.changeShelf} />
-          )}
+        )}/>
+        <Route path="/search" render={() => (
+          <SearchBooks />
+        )}/>
       </div>
     )
   }
