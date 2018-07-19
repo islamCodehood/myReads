@@ -6,8 +6,14 @@ class SearchBooks extends Component {
     render() {
         return (
             <div className="search-books">
-                <SearchForm />
-                <SearchResults />
+                <SearchForm 
+                  handleChange={this.props.updateQuery} 
+                  value={this.props.query}
+                />
+                <SearchResults 
+                  books={this.props.books}
+                  changeShelf={this.props.selectShelf}
+                />
             </div>
         )
     }
