@@ -8,13 +8,9 @@ import BookList from './BookList'
 
 class BooksApp extends React.Component {
   state = {
-    /**
-     * TODO: Instead of using this state variable to keep track of which page
-     * we're on, use the URL in the browser's address bar. This will ensure that
-     * users can use the browser's back and forward buttons to navigate between
-     * pages, as well as provide a good URL they can bookmark and share.
-     */
-    books: []
+    books: [],
+    searchedBooks: [],
+    query: '',
   }
 
   componentDidMount() {
@@ -37,15 +33,62 @@ class BooksApp extends React.Component {
     //update books in server
     BooksAPI.update(book, shelf)
 }
+//select shelf for searched book
+selectShelf = (book, shelf) => {
+  book.shelf = shelf
+  console.log(shelf, book.shelf)
+  //Change the state by filtering the books array to exclude the changed
+  //book. Then concat this book after changing its shelf value to the books array.
+  this.setState((state) => ({
+    books: state.books.filter((b) => b.id !== book.id).concat([book])
+  }))
+  this.setState(state => ({
+    searchedBooks: state.searchedBooks.filter((b) => b.id !== book.id).concat([book])
+  }))
+  //update books in server
+  BooksAPI.update(book, shelf)
+}
+
+updateQuery = (query) => {
+  this.setState({
+    query: query.trim()
+  })
+  if (query !== '') {
+    BooksAPI.search(query).then(searchedBooks => {
+      console.log(searchedBooks)
+      this.setState({
+        searchedBooks
+      })
+    }).catch(() => {
+      this.setState({
+        searchedBooks : []
+      })
+    })
+  }else{
+      this.setState({
+        searchedBooks :[]
+      })
+  }
+}
+
 
   render() {
     return (
       <div className="app">
         <Route exact path="/" render={() => (
-          <BookList books={this.state.books} changeShelf={this.changeShelf} />
+          <BookList 
+            books={this.state.books} 
+            changeShelf={this.changeShelf}
+            clearQuery={this.clearQuery}
+          />
         )}/>
         <Route path="/search" render={() => (
-          <SearchBooks />
+          <SearchBooks 
+            selectShelf={this.selectShelf} 
+            books={this.state.searchedBooks}
+            updateQuery={(evt) => this.updateQuery(evt.target.value)}
+            query={this.state.query}
+          />
         )}/>
       </div>
     )
