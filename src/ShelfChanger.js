@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 class ShelfChanger extends Component {
     handleChange = (evt) => {
         this.props.changeShelf(this.props.book, evt.target.value)
+        //console.log(this.props.book, evt.target.value)
     }
 
     render() {
