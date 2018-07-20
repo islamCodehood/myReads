@@ -3,6 +3,9 @@ import SearchForm from './SearchForm'
 import SearchResults from './SearchResults'
 
 class SearchBooks extends Component {
+    componentDidMount() {
+        this.props.clearQuery()
+    }
     render() {
         return (
             <div className="search-books">
