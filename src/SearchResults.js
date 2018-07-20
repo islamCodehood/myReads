@@ -22,7 +22,7 @@ class SearchResults extends Component {
                             bookId={book.id}
                             book={book}
                             changeShelf={this.props.changeShelf}
-                            currentShelf={"none"}
+                            shelf={book.shelf}
                         />
                       </li>))}  
                 </ol>
