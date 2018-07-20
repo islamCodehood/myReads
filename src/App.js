@@ -15,7 +15,6 @@ class BooksApp extends React.Component {
 
   componentDidMount() {
     BooksAPI.getAll().then(books => {
-      console.log(books)
       this.setState({
         books
       })
@@ -25,7 +24,6 @@ class BooksApp extends React.Component {
 //Change the book shelf and move it to the new shelf
   changeShelf = (book, shelf) => {
     book.shelf = shelf
-    console.log(shelf, book.shelf)
     //Change the state by filtering the books array to exclude the changed
     //book. Then concat this book after changing its shelf value to the books array.
     this.setState((state) => ({
@@ -37,7 +35,6 @@ class BooksApp extends React.Component {
 //select shelf for searched book
 selectShelf = (book, shelf) => {
   book.shelf = shelf
-  console.log(shelf, book.shelf)
   //Change the state by filtering the books array to exclude the changed
   //book. Then concat this book after changing its shelf value to the books array.
   this.setState((state) => ({
@@ -48,7 +45,6 @@ selectShelf = (book, shelf) => {
   }))
   //update books in server
   BooksAPI.update(book, shelf).then(data => {
-    console.log(data)
 
   })
 }
@@ -79,10 +75,6 @@ updateQuery = (query) => {
         })
         
       })
-      
-/*       console.log(matched)
-      console.log(this.state.searchedBooks) */
-
 .catch(() => {
       this.setState({
         searchedBooks : []
