@@ -119,7 +119,6 @@ clearQuery = () => {
             books={this.state.searchedBooks}
             updateQuery={(evt) => this.updateQuery(evt.target.value)}
             query={this.state.query}
-            shelf={this.state.searchedBooksShelf}
             clearQuery={this.clearQuery}
           />
         )}/>
