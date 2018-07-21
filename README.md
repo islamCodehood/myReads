@@ -39,3 +39,22 @@
                 ├── <SearchForm /> 
                 └── <SearchResults />
 ```
+
+
+## How To Use
+
+- [Download a zip to your local machine from here](https://github.com/Islam888/myReads/archive/master.zip).
+- Decompress the app.
+- Using terminal on your local machine go to the folder containing the app.
+- Run `npm start`.
+- A new browser tab will open with the app running.
+- You can now click on the plus button to search a book by title or author.
+- When you find the desired book you can add it to the desired shelf.
+- Returning back to your library you will find the book on the selected shelf.
+- In the search page you can easily check if the book in your library and on which shelf.
+- The library is divided into three shelves as mentioned in the app description. You can move the book to another shelf as the status changes. For example if you finished reading a book you can move it from "Currently Reading" shelf to "Read" one.
+
+
+## License:
+
+- This project is licensed under the terms of the [MIT]
