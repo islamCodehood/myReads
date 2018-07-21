@@ -57,4 +57,4 @@
 
 ## License:
 
-- This project is licensed under the terms of the [MIT]
+- This project is licensed under the terms of the [MIT](https://github.com/Islam888/myReads/blob/master/LICENSE)
