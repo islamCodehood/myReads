@@ -73,11 +73,11 @@ class BooksApp extends React.Component {
         of books in the library and if so return this book with its shelf value and save it to 
         searchedBooks array or return the book in the response. */
             searchedBooks = response.map(searchedBook => {
-              const index = this.state.books.findIndex(
+              const matchedBook = this.state.books.find(
                 libraryBook => libraryBook.id === searchedBook.id
               );
-              if (index >= 0) {
-                return this.state.books[index];
+              if (matchedBook) {
+                return matchedBook;
               } else {
                 return searchedBook;
               }
